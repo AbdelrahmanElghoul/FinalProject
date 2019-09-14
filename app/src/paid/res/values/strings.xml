@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">paid Build it Bigger</string>
+    <string name="instructions">Press the button for a paid delicious joke!</string>
+</resources>
