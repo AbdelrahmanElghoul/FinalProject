@@ -28,15 +28,14 @@ android {
 
     buildTypes {
         release {
-            applicationIdSuffix '.free'
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        release{
-            applicationIdSuffix '.paid'
+        releaseMinified{
             minifyEnabled true
             shrinkResources true
+            matchingFallbacks = ['debug', 'release']
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,12 +52,20 @@ android {
             applicationIdSuffix '.paid'
         }
     }
+    android.variantFilter{ variant ->
+        if (variant.buildType.name.equals('releaseMinified') && !variant.getFlavors().get(0).name.equals('paid')) {
+            variant.setIgnore(true);
+        } else if (variant.buildType.name.equals('release') && variant.getFlavors().get(0).name.equals('paid')){
+            variant.setIgnore(true);
+        }
+    }
 
     configurations {
         all {
             exclude module: 'httpclient'
         }
     }
+
 
 }
 
@@ -75,6 +82,6 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation 'junit:junit:4.12'
-
+    implementation project(path: ':JavaLibrary')
     implementation project(path:':displayingjokeactivity')
 }
