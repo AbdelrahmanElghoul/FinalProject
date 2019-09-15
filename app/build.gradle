@@ -28,8 +28,15 @@ android {
 
     buildTypes {
         release {
+            applicationIdSuffix '.free'
             minifyEnabled false
             shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release{
+            applicationIdSuffix '.paid'
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
