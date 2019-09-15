@@ -3,13 +3,10 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Pair;
-import android.widget.Toast;
 
 import androidx.test.espresso.idling.CountingIdlingResource;
 
 import com.example.displayingjokeactivity.JokeActivity;
-import com.example.joketelling.Joke;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
