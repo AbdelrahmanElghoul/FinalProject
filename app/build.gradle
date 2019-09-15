@@ -32,7 +32,7 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        releaseMinified{
+        releaseMinified {
             minifyEnabled true
             shrinkResources true
             matchingFallbacks = ['debug', 'release']
@@ -52,10 +52,10 @@ android {
             applicationIdSuffix '.paid'
         }
     }
-    android.variantFilter{ variant ->
+    android.variantFilter { variant ->
         if (variant.buildType.name.equals('releaseMinified') && !variant.getFlavors().get(0).name.equals('paid')) {
             variant.setIgnore(true);
-        } else if (variant.buildType.name.equals('release') && variant.getFlavors().get(0).name.equals('paid')){
+        } else if (variant.buildType.name.equals('release') && variant.getFlavors().get(0).name.equals('paid')) {
             variant.setIgnore(true);
         }
     }
@@ -67,6 +67,11 @@ android {
     }
 
 
+    sourceSets {
+        free {
+            manifest.srcFile 'src/free/AndroidManifest.xml'
+        }
+    }
 }
 
 dependencies {
@@ -74,7 +79,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.gms:play-services-ads:18.2.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:18.2.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
@@ -83,5 +88,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation 'junit:junit:4.12'
     implementation project(path: ':JavaLibrary')
-    implementation project(path:':displayingjokeactivity')
+    implementation project(path: ':displayingjokeactivity')
 }
